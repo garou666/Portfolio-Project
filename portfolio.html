@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saiyuj KP - Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #0dcaf0;
+            --secondary-color: #6c757d;
+            --dark-bg: #121212;
+            --card-bg: #1e1e1e;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: #f8f9fa;
+            scroll-behavior: smooth;
+        }
+        
+        .navbar {
+            background-color: rgba(18, 18, 18, 0.95) !important;
+            backdrop-filter: blur(10px);
+        }
+        
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(18, 18, 18, 0.9), rgba(18, 18, 18, 0.9));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            z-index: -1;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><circle cx="50" cy="50" r="40" stroke="%230dcaf0" stroke-width="2" fill="none" /><rect x="30" y="30" width="40" height="40" stroke="%230dcaf0" stroke-width="1" fill="none" /></svg>');
+            background-size: 100px 100px;
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid #2a2a2a;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .skill-bar {
+            background-color: #2a2a2a;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 4px;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            margin-right: 15px;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary-color);
+            color: #121212;
+            transform: translateY(-3px);
+        }
+        
+        .language-flag {
+            width: 30px;
+            height: 20px;
+            margin-right: 10px;
+            border-radius: 2px;
+            display: inline-block;
+        }
+        
+        .english-flag { background: linear-gradient(to bottom, #012169 0%, #012169 33%, #ffffff 33%, #ffffff 66%, #c8102e 66%, #c8102e 100%); }
+        .malayalam-flag { background: linear-gradient(to right, #ffffff 0%, #ffffff 33%, #009639 33%, #009639 66%, #ff9933 66%, #ff9933 100%); }
+        .hindi-flag { background: linear-gradient(to bottom, #ff9933 0%, #ff9933 33%, #ffffff 33%, #ffffff 66%, #138808 66%, #138808 100%); }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: #121212;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            border: 4px solid var(--dark-bg);
+        }
+    </style>
+</head>
+<body data-bs-theme="dark">
+    <section id="home" class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h1 class="display-3 fw-bold mb-4">Hello, I'm <span class="text-info">Saiyuj KP</span></h1>
+                    <p class="lead mb-4">Aspiring Full Stack Developer & Computer Science Student</p>
+                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                        <a href="#projects" class="btn btn-info btn-lg px-4">View My Work</a>
+                        <a href="#contact" class="btn btn-outline-info btn-lg px-4">Contact Me</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-5">
+        <div class="container py-5">
+            <h2 class="section-title">About Me</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <p class="lead">I am a passionate BCA student with a strong foundation in frontend development and currently expanding my expertise into backend technologies.</p>
+                    <p>My journey in web development started with HTML and CSS, and I've since progressed to JavaScript and various frameworks. I'm dedicated to creating responsive, user-friendly web applications that solve real-world problems.</p>
+                    <p>Beyond web development, I'm also interested in Machine Learning and Data Science, fields I plan to explore more deeply in the future.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="py-5 bg-dark">
+        <div class="container py-5">
+            <h2 class="section-title">Education</h2>
+            <div>
+                <div>
+                    <h4>BCA - Computer Science</h4>
+                    <h5 class="text-info">KLE S. Nijalingappa College (2023-2026)</h5>
+                    <p>Currently pursuing my Bachelor's in Computer Applications with a focus on software development and computer science fundamentals.</p>
+                </div>
+                <div>
+                    <h4>Senior Secondary (12th CBSE)</h4>
+                    <h5 class="text-info">Venkat International Public School (2009-2023)</h5>
+                    <p>Completed my secondary education with a focus on science and mathematics, laying the groundwork for my technical career.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-5">
+        <div class="container py-5">
+            <h2 class="section-title">Projects</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card p-4">
+                        <div class="card-body">
+                            <h4 class="card-title">VOPI - Petition Voting System</h4>
+                            <p class="card-text">A full-stack web application that allows users to create and sign petitions for social causes. Built with Node.js, Express, and MongoDB.</p>
+                            <div class="mt-4">
+                                <a href="https://vopi-gzmq.onrender.com/" target="_blank" class="btn btn-sm btn-outline-info me-2">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card p-4">
+                        <div class="card-body">
+                            <h4 class="card-title">Portfolio Website</h4>
+                            <p class="card-text">A personal portfolio website built with HTML, CSS, JavaScript and Bootstrap to showcase my skills and projects.</p>
+                            <div class="mt-4">
+                                <a href="#" class="btn btn-sm btn-outline-info me-2">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="skills" class="py-5 bg-dark">
+        <div class="container py-5">
+            <h2 class="section-title">Skills</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <span>HTML/CSS</span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <span>JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <span>Python</span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <span>Java</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <span>SQL</span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <span>Communication</span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <span>Problem Solving</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h4 class="mt-5 mb-3">Certifications</h4>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="card p-3">
+                        <h5>Hardware and Networking</h5>
+                        <p class="text-secondary">Foundation in computer hardware and network systems</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card p-3">
+                        <h5>Fullstack Web Development</h5>
+                        <p class="text-secondary">Udemy Bootcamp - Comprehensive web development training</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card p-3">
+                        <h5>CS50 Python</h5>
+                        <p class="text-secondary">EDX Harvard - Python programming fundamentals</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-5">
+        <div class="container py-5">
+            <h2 class="section-title">Languages Known</h2>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="card p-4 text-center">
+                        <h4>English</h4>
+                        <p class="text-secondary">Professional Proficiency</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card p-4 text-center">
+                        <h4>Malayalam</h4>
+                        <p class="text-secondary">Native Speaker</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card p-4 text-center">
+                        <h4>Hindi</h4>
+                        <p class="text-secondary">Conversational</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="py-5 bg-dark">
+        <div class="container py-5">
+            <h2 class="section-title">Social Networks</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="d-flex mb-3">
+                        <a href="https://www.linkedin.com/in/saiyuj-kp-725379337" target="_blank" class="social-icon">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/garou666" target="_blank" class="social-icon">
+                            <i class="bi bi-github"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a href="#" class="back-to-top">
+        <i class="bi bi-arrow-up"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script>
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow');
+            } else {
+                navbar.classList.remove('shadow');
+            }
+        });
+    </script>
+</body>
+</html>
